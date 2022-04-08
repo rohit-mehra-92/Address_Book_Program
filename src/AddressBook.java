@@ -1,35 +1,43 @@
+import java.lang.*;
+import java.util.*;
+
 public class AddressBook {
 
-    private String firstname;
-    private String lastname;
-    private int streetNo;
-    private String street;
-    private String city;
-    private long contactNumber;
-    private String email;
-
-    public AddressBook(String firstname, String lastname, int streetNo, String street,
-                       String city, int contactNumber, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.streetNo = streetNo;
-        this.street = street;
-        this.city = city;
-        this.contactNumber = contactNumber;
-        this.email = email;
-    }
-
     public static void main(String[] args) {
-        AddressBook contact = new AddressBook("Rohit", "mehra", 249, "aranya,",
-                "indore", 5292759, "rohit264cool@gmail.com");
-        System.out.println(
-                        contact.firstname + " " +
-                        contact.lastname + "\n " +
-                        contact.city + " " +
-                        contact.streetNo + " " +
-                        contact.street + "\n " +
-                        contact.contactNumber + "\n " +
-                        contact.email);
+
+        Contact newPerson = new Contact();
+
+        ArrayList<Contact> person = new ArrayList<>();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter first name: ");
+        newPerson.setFirstname(sc.nextLine());
+
+        System.out.print("Enter last name: ");
+        newPerson.setLastname(sc.nextLine());
+
+        System.out.print("Enter streetNo.: ");
+        newPerson.setStreetNo(sc.nextInt());
+
+        sc.nextLine();
+
+        System.out.print("Enter street: ");
+        newPerson.setStreet(sc.nextLine());
+
+        System.out.print("Enter city: ");
+        newPerson.setCity(sc.nextLine());
+
+        sc.nextLine();
+
+        System.out.print("Enter phone Number: ");
+        newPerson.setContactNumber(sc.nextLine());
+
+        System.out.print("Enter email address: ");
+        newPerson.setEmail(sc.nextLine());
+
+        person.add(new Contact(newPerson.getFirstname(), newPerson.getLastname(), newPerson.getStreetNo(), newPerson.getStreet(),
+                newPerson.getCity(), newPerson.getContactNumber(), newPerson.getEmail()));
+
+        System.out.println(person.get(0));
     }
 }
-
