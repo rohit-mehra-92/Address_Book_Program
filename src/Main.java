@@ -20,6 +20,11 @@ public class Main {
                     String edit = sc.nextLine();
                     addressBook.editContact(edit);
                     break;
+                case 3:
+                    System.out.println("Enter the first name of person who you want to delete");
+                    String remove = sc.nextLine();
+                    addressBook.deleteContact(remove);
+                    break;
                 default:
                     System.out.println("Please choose correct option");
             }
