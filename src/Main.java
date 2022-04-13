@@ -9,7 +9,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int option;
         do {
-            System.out.println("CHOOSE THE OPTION: \n 1.Add Contact \n 2.Edit Contact \n 0.exit");
+            System.out.println("CHOOSE THE OPTION: \n 1.Add Contact \n 2.Edit Contact \n 3.remove Contact \n 0.exit");
             option = in.nextInt();
             switch (option) {
                 case 1:

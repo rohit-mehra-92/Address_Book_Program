@@ -104,4 +104,12 @@ public class AddressBook {
         }
     }
 
+    public void deleteContact(String firstName) {
+        for (int i = 0; i < person.size(); i++) {
+            if (person.get(i).getFirstName().equalsIgnoreCase(firstName)) {
+                person.remove(i);
+                System.out.println(person);
+            }
+        }
+    }
 }
