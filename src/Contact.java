@@ -1,45 +1,26 @@
 public class Contact {
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private int streetNo;
     private String street;
     private String city;
     private String contactNumber;
     private String email;
 
-    public static void main(String[] args) {
-
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Contact(String firstname, String lastname, int streetNo, String street, String city, String contactNumber, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.streetNo = streetNo;
-        this.street = street;
-        this.city = city;
-        this.contactNumber = contactNumber;
-        this.email = email;
-
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public Contact() {
-
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getStreetNo() {
@@ -85,8 +66,8 @@ public class Contact {
     @Override
     public String toString() {
         return "ContactDetail{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                "firstname='" + firstName + '\'' +
+                ", lastname='" + lastName + '\'' +
                 ", streetNo=" + streetNo +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
@@ -95,4 +76,3 @@ public class Contact {
                 '}';
     }
 }
-
