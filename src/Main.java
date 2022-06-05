@@ -1,36 +1,38 @@
 import java.util.Scanner;
 
 public class Main {
-    static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-
+        int choice = 0;
         AddressBook addressBook = new AddressBook();
-        Scanner in = new Scanner(System.in);
-        int option;
+        System.out.println("Welcome to Address Book");
+        Scanner input = new Scanner(System.in);
         do {
-            System.out.println("CHOOSE THE OPTION: \n 1.Add Contact \n 2.Edit Contact \n 3.remove Contact \n 0.exit");
-            option = in.nextInt();
-            switch (option) {
+            System.out.println("1. Add Person Details\n2. Display Details\n3. Edit Detail\n4. Delete Detail\n0. Exit");
+            System.out.print("Enter Choice: ");
+            choice = input.nextInt();
+            switch (choice) {
                 case 1:
-                    addressBook.addContact();
+                    addressBook.addContactDetail();
                     break;
                 case 2:
-                    System.out.println("Enter the first Name of person who you want to edit");
-                    String edit = sc.nextLine();
-                    addressBook.editContact(edit);
+                    addressBook.displayContactDetails();
                     break;
                 case 3:
-                    System.out.println("Enter the first name of person who you want to delete");
-                    String remove = sc.nextLine();
-                    addressBook.deleteContact(remove);
+                    System.out.print("Enter First Name: ");
+                    String fNameEdit = input.next();
+                    addressBook.editContactDetail(fNameEdit);
+                    break;
+                case 4:
+                    System.out.print("Enter First Name to delete: ");
+                    String fNameDelete = input.next();
+                    addressBook.deleteContactDetail(fNameDelete);
+                    break;
+                case 0:
                     break;
                 default:
-                    System.out.println("Please choose correct option");
+                    System.out.println("Invalid input...");
             }
-        } while (option != 0);
+
+        } while (choice != 0);
     }
 }
-
-
-

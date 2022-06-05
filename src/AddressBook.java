@@ -1,115 +1,156 @@
-import java.lang.*;
 import java.util.*;
 
 public class AddressBook {
-    ArrayList<Contact> person = new ArrayList<Contact>();
-    Scanner sc = new Scanner(System.in);
+    List<String> listFirstName = new ArrayList<>();
+    List<PersonContact> listContactDetails = new ArrayList<>();
 
-    public void addContact() {
-        Contact newPerson = new Contact();
+    public List readContactDetail() {
+        List<String> list = new ArrayList<>();
+        System.out.println("Enter Contact Details");
+        System.out.println("----------------------");
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter First Name: ");
+        list.add(in.next());
+        System.out.print("Enter Last Name: ");
+        list.add(in.next());
+        System.out.print("Enter Address: ");
+        list.add(in.next());
+        System.out.print("Enter City: ");
+        list.add(in.next());
+        System.out.print("Enter State: ");
+        list.add(in.next());
+        System.out.print("Enter Zip: ");
+        list.add(in.next());
+        System.out.print("Enter Phone number: ");
+        list.add(in.next());
+        System.out.print("Enter Email Id: ");
+        list.add(in.next());
+        return list;
+    }
 
-        System.out.print("Enter first name: ");
-        newPerson.setFirstName(sc.nextLine());
-
-        System.out.print("Enter last name: ");
-        newPerson.setLastName(sc.nextLine());
-
-        System.out.print("Enter streetNo.: ");
-        newPerson.setStreetNo(sc.nextInt());
-
-        System.out.print("Enter street: ");
-        newPerson.setStreet(sc.nextLine());
-
-        sc.nextLine();
-
-        System.out.print("Enter city: ");
-        newPerson.setCity(sc.nextLine());
-
-        System.out.print("Enter phone Number: ");
-        newPerson.setContactNumber(sc.nextLine());
-
-        System.out.print("Enter email address: ");
-        newPerson.setEmail(sc.nextLine());
-
-        person.add(newPerson);
-
-        for (int i = 0; i < person.size(); i++) {
-            System.out.println(person.get(i));
+    public void addContactDetail() {
+        List listReadContactDetails = readContactDetail();
+        if (!listFirstName.contains((String) listReadContactDetails.get(0)))//check whether the first name exist
+        {
+            PersonContact objPersonContact = new PersonContact();
+            objPersonContact.addOrEditPersonContact(listReadContactDetails);
+            listFirstName.add((String) listReadContactDetails.get(0));
+            listContactDetails.add(objPersonContact);
+        } else {
+            System.out.println("First Name already exist..");
         }
     }
 
-    public void editContact(String editName) {
-        for (int i = 0; i < person.size(); i++) {
-            if (person.get(i).getFirstName().equalsIgnoreCase(editName)) {
-                System.out.println("CHOOSE THE OPTIONS YOU WANT TO EDIT :");
-                System.out.println(" 1.firstName \n 2.lastName \n 3.streetNumber \n 4.street \n 5.city \n 6.contactNumber \n 7.emailAddress ");
-                int choice = sc.nextInt();
+    public void editContactDetail(String firstName) {
+        if (listFirstName.isEmpty() || listContactDetails.isEmpty()) {
+            System.out.println("------NO RECORDS------");
+            return;
+        }
+        if (listFirstName.contains(firstName)) {
+            int choice;
+            int indexFirstName = listFirstName.indexOf(firstName);
+            PersonContact newPersonContact = listContactDetails.get(indexFirstName);
+            do {
+                System.out.println("---------------------------");
+                System.out.println("What you want to edit");
+                System.out.println("1. First Name\n2. Last Name\n3. Address\n4. City\n5. State\n6. Zip\n7. Phone Number\n8. Email Id\n9. All\n0. Cancel\n");
+                System.out.print("Enter choice: ");
+                Scanner in = new Scanner(System.in);
+                choice = in.nextInt();
+
                 switch (choice) {
                     case 1:
-                        System.out.println(person.get(i).getFirstName());
-                        System.out.println("Enter first name");
-                        sc.nextLine();
-                        String firstName = sc.nextLine();
-                        person.get(i).setFirstName(firstName);
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getFirstName());
+                        System.out.print("New: ");
+                        String newFirstName = in.next();
+                        newPersonContact.setFirstName(newFirstName);
+                        listFirstName.set(indexFirstName, newFirstName);
                         break;
+
                     case 2:
-                        System.out.println(person.get(i).getLastName());
-                        System.out.println("Enter last name");
-                        sc.nextLine();
-                        String lastName = sc.nextLine();
-                        person.get(i).setLastName(lastName);
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getLastName());
+                        System.out.print("New: ");
+                        String newLastName = in.next();
+                        newPersonContact.setLastName(newLastName);
                         break;
                     case 3:
-                        System.out.println(person.get(i).getStreetNo());
-                        System.out.println("Enter the street number");
-                        int streetNum = sc.nextInt();
-                        person.get(i).setStreetNo(streetNum);
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getAddress());
+                        System.out.print("New: ");
+                        String newAddress = in.next();
+                        newPersonContact.setAddress(newAddress);
                         break;
                     case 4:
-                        System.out.println(person.get(i).getStreet());
-                        System.out.println("Enter street name");
-                        sc.nextLine();
-                        person.get(i).setStreet(sc.nextLine());
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getCity());
+                        System.out.print("New: ");
+                        String newCity = in.next();
+                        newPersonContact.setCity(newCity);
                         break;
                     case 5:
-                        System.out.println(person.get(i).getCity());
-                        System.out.println("Enter city name");
-                        sc.nextLine();
-                        person.get(i).setCity(sc.nextLine());
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getState());
+                        System.out.print("New: ");
+                        String newState = in.next();
+                        newPersonContact.setState(newState);
                         break;
                     case 6:
-                        System.out.println(person.get(i).getContactNumber());
-                        System.out.println("Enter contact number");
-                        sc.nextLine();
-                        person.get(i).setContactNumber(sc.nextLine());
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getZip());
+                        System.out.print("New: ");
+                        String newZip = in.next();
+                        newPersonContact.setZip(newZip);
                         break;
                     case 7:
-                        System.out.println(person.get(i).getEmail());
-                        System.out.println("Enter email address");
-                        sc.nextLine();
-                        person.get(i).setEmail(sc.nextLine());
-                        System.out.println(person.get(i));
+                        System.out.println("Old: " + newPersonContact.getPhone());
+                        System.out.print("New: ");
+                        String newPhone = in.next();
+                        newPersonContact.setPhone(newPhone);
+                        break;
+                    case 8:
+                        System.out.println("Old: " + newPersonContact.getEmail());
+                        System.out.print("New: ");
+                        String newEmail = in.next();
+                        newPersonContact.setEmail(newEmail);
+                        break;
+                    case 9:
+                        List editedPersonDetail = readContactDetail();
+                        newPersonContact.addOrEditPersonContact(editedPersonDetail);
+                        listFirstName.set(indexFirstName, (String) editedPersonDetail.get(0));
+                        break;
+                    case 0:
                         break;
                     default:
-                        System.out.println("Enter the valid option");
+                        System.out.println("invalid option....");
                         break;
                 }
-            } else System.out.println("Contact not found");
+            } while (choice != 0);
+
+
+        } else {
+            System.out.println("First name doesn't exist");
         }
     }
 
-    public void deleteContact(String firstName) {
-        for (int i = 0; i < person.size(); i++) {
-            if (person.get(i).getFirstName().equalsIgnoreCase(firstName)) {
-                person.remove(i);
-                System.out.println(person);
-            }
+    public void deleteContactDetail(String firstName) {
+        if (listFirstName.isEmpty() || listContactDetails.isEmpty()) {
+            System.out.println("------NO RECORDS------");
+            return;
+        }
+        if (listFirstName.contains(firstName)) {
+            int indexFirstName = listFirstName.indexOf(firstName);
+            listContactDetails.remove(indexFirstName);
+            listFirstName.remove(indexFirstName);
+        } else {
+            System.out.println("First name doesn't exist");
+        }
+    }
+
+    public void displayContactDetails() {
+        if (listFirstName.isEmpty() || listContactDetails.isEmpty()) {
+            System.out.println("------NO RECORDS------");
+            return;
+        }
+        for (PersonContact objPerson : listContactDetails) {
+            System.out.println("--------------------------");
+            objPerson.displayPersonContactDetails();
+            System.out.println("--------------------------");
         }
     }
 }
